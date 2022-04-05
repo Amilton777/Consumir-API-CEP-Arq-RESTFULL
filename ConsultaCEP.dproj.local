@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2022/04/05 14:31:33.620,=C:\Users\Projeto 05\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/04/05 14:32:33.953,C:\Users\Projeto 05\Documents\Embarcadero\Studio\Projects\UConsultaCep.pas=C:\Users\Projeto 05\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/04/05 14:32:33.953,C:\Users\Projeto 05\Documents\Embarcadero\Studio\Projects\UConsultaCep.dfm=C:\Users\Projeto 05\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/04/05 14:33:33.680,C:\Users\Projeto 05\Desktop\ConsultaCEPArquitetura-REST\UConsultaCep.dfm=C:\Users\Projeto 05\Documents\Embarcadero\Studio\Projects\UConsultaCep.dfm</Transaction>
+    <Transaction>2022/04/05 14:33:33.680,C:\Users\Projeto 05\Desktop\ConsultaCEPArquitetura-REST\UConsultaCep.pas=C:\Users\Projeto 05\Documents\Embarcadero\Studio\Projects\UConsultaCep.pas</Transaction>
+    <Transaction>2022/04/05 14:33:45.968,C:\Users\Projeto 05\Desktop\ConsultaCEPArquitetura-REST\ConsultaCEP.dproj=C:\Users\Projeto 05\Documents\Embarcadero\Studio\Projects\Project3.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

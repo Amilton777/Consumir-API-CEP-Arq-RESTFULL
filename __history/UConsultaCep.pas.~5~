@@ -1,0 +1,88 @@
+unit UConsultaCep;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, REST.Types, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, REST.Response.Adapter, REST.Client, Data.Bind.Components,
+  Data.Bind.ObjectScope, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.Mask;
+
+type
+  TFrmConsultaCEP = class(TForm)
+    EdtCEP: TMaskEdit;
+    Image1: TImage;
+    btnConsultar: TButton;
+    RESTClient1: TRESTClient;
+    RESTRequest1: TRESTRequest;
+    RESTResponse1: TRESTResponse;
+    RESTResponseDataSetAdapter1: TRESTResponseDataSetAdapter;
+    MemTable: TFDMemTable;
+    Memo1: TMemo;
+    procedure btnConsultarClick(Sender: TObject);
+  private
+    { Private declarations }
+     function ConsultaCEP();
+  public
+    { Public declarations }
+
+
+end;
+
+var
+  FrmConsultaCEP: TFrmConsultaCEP;
+
+implementation
+
+{$R *.dfm}
+
+FUNCTION TFrmConsultaCEP.ConsultaCEP();
+begin
+    if EdtCEP.ControlCount <> 8  then
+     ShowMessage('Possívelmente CEP inválido!!!')
+    else
+     begin
+         RESTRequest1.Resource:= EdtCEP.Text+'/json';
+         RESTRequest1.Execute;
+
+         if RESTRequest1.Response.StatusCode = 200 then
+          begin
+            if RESTRequest1.Response.Content.IndexOf('erro') then
+             begin
+               ShowMessage('CEP NÃO ENCONTRADO');
+
+             end
+            ELSE
+             BEGIN
+               Memo1.Clear;
+               WITH MemTable do
+                begin
+                   Memo1.Lines.Add('CEP:'+FieldByName('CEP').ASString);
+                   Memo1.Lines.Add('logradouro:'+FieldByName('logradouro').ASString);
+                   Memo1.Lines.Add('complemento:'+FieldByName('complemento').ASString);
+                   Memo1.Lines.Add('bairro:'+FieldByName('bairro').ASString);
+                   Memo1.Lines.Add('localidade:'+FieldByName('localidade').ASString);
+                   Memo1.Lines.Add('uf:'+FieldByName('uf').ASString);
+                   Memo1.Lines.Add('ibge:'+FieldByName('ibge').ASString);
+                   Memo1.Lines.Add('gia:'+FieldByName('gia').ASString);
+                   Memo1.Lines.Add('ddd:'+FieldByName('ddd').ASString);
+                   Memo1.Lines.Add('siafi:'+FieldByName('siafi').ASString);
+                end;
+             END;
+
+          end;
+
+     end;
+end;
+
+
+procedure TFrmConsultaCEP.btnConsultarClick(Sender: TObject);
+begin
+    // Chamando a função que esta implementada o consumo da API RESTFULL
+    ConsultaCEP(EdtCEP.Text);
+end;
+
+end.
